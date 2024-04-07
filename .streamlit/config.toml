@@ -1,0 +1,9 @@
+[global]
+showWarningOnDirectExecution = false
+
+[client]
+showSidebarNavigation = false
+
+[server]
+enableCORS = false
+enableXsrfProtection = false
