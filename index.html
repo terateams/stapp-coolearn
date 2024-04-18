@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future diary</title>
+    <style>
+        /* 设置 body 和 html 的高度和宽度为 100%，去除默认的边距 */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* 隐藏滚动条 */
+        }
+        /* 设置 iframe 充满整个页面，没有边框，确保无缝集成的效果 */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* 去除边框 */
+        }
+    </style>
+</head>
+<body>
+    <!-- iframe 标签，先不设置src属性 -->
+    <iframe id="embeddedIframe" frameborder="0" allowfullscreen>
+        <!-- 对于不支持 iframe 的浏览器，显示一段文本 -->
+        Your browser does not support iframes.
+    </iframe>
+
+    <script>
+        // JavaScript 代码用于从当前页面的URL提取查询参数并附加到iframe的src
+        document.addEventListener("DOMContentLoaded", function() {
+            var iframe = document.getElementById('embeddedIframe');
+            var baseIframeSrc = 'https://stapp-coolearn.streamlit.app?embed=True';
+
+            // 获取当前页面的URL参数
+            var urlParams = new URLSearchParams(window.location.search);
+            
+            // 将这些参数添加到iframe的基本URL
+            urlParams.forEach(function(value, key) {
+                baseIframeSrc += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+            });
+
+            // 设置iframe的src属性
+            iframe.src = baseIframeSrc;
+        });
+    </script>
+</body>
+</html>
